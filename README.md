@@ -5,7 +5,7 @@ one ruled row per thing you ship, the leader rule running out to its category, a
 notes you kept while building it filed underneath. Free and MIT-licensed.
 
 [Live demo](https://leader-free.ondelva.com) · [Pro demo](https://leader.ondelva.com) ·
-[Get Pro](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg) ·
+[Get Pro](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg?utm_source=github) ·
 [Customization](docs/customization.md) · [Content](docs/content.md) ·
 [Deploy](docs/deploy.md)
 
@@ -109,7 +109,7 @@ have it. Keeping it is how the next person finds the theme. Leader Pro ships wit
 Leader Pro is the same shelf with a second axis through it, the reading apparatus, the
 variants and the integrations — and, for a shelf that sells, editions with prices and a
 gallery of screenshots. See it running at
-[leader.ondelva.com](https://leader.ondelva.com), and [buy it here](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg) — $49 for one
+[leader.ondelva.com](https://leader.ondelva.com), and [buy it here](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg?utm_source=github) — $49 for one
 person, $129 for a team of up to ten.
 
 |                | Free (this repo)                                                       | Pro                                                                           |
