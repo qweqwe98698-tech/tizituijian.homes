@@ -16,9 +16,34 @@ const archived = all.filter((w) => w.data.status === 'archived');
 
 const t = useT(Astro.currentLocale);
 const description = t.workDescription;
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: t.work },
+    ],
+  },
+  {
+    '@type': 'CollectionPage',
+    name: `${t.work} · 梯子推荐`,
+    description,
+    url: new URL('/work/', Astro.site).href,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: shelf.map((w, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: new URL(`/work/${w.id}/`, Astro.site).href,
+        name: w.data.title,
+      })),
+    },
+  },
+];
 ---
 
-<Base title={t.work} description={description}>
+<Base title={t.work} description={description} {jsonLd}>
   <PageHead title={t.work} lead={description} />
 
   {shelf.length > 0 && (

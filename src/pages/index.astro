@@ -1,9 +1,6 @@
 ---
 /*
-  Home: the nameplate, the shelf, and the recent notes. Three bands, each with
-  its own vertical rhythm -- the nameplate gets the most air, the notes the
-  least. A band with nothing in it is not rendered at all, so a site with no
-  work or no notes yet still reads as a finished page.
+  Home: the nameplate, top 10 airports shelf, and recent test notes.
 */
 import Base from '../layouts/Base.astro';
 import NoteList from '../components/NoteList.astro';
@@ -12,8 +9,8 @@ import { getNotes, getWork } from '../lib/content';
 import { site } from '../config';
 import { useT } from '../i18n/t';
 
-// The shelf is what is on sale now; archived products live at the foot of /work.
-const shelf = (await getWork()).filter((w) => w.data.status !== 'archived').slice(0, 5);
+// Top 10 airports featured on the main shelf
+const shelf = (await getWork()).filter((w) => w.data.status !== 'archived').slice(0, 10);
 const notes = (await getNotes()).slice(0, 5);
 const t = useT(Astro.currentLocale);
 ---
@@ -27,11 +24,11 @@ const t = useT(Astro.currentLocale);
   {shelf.length > 0 && (
     <section class="border-border border-t">
       <div class="mx-auto max-w-wide px-4 py-14 md:py-20">
-        <h2 class="text-muted font-mono text-sm">{t.work}</h2>
+        <h2 class="text-muted font-mono text-sm">{t.work}（TOP 10 精选推荐）</h2>
         <WorkList items={shelf} class="mt-7 text-2xl md:text-4xl" />
         <p class="mt-9 text-right text-sm">
           <a href="/work" class="text-muted hover:text-foreground">
-            {t.allWork} →
+            查看全部 42 家机场品牌库 →
           </a>
         </p>
       </div>
@@ -51,4 +48,33 @@ const t = useT(Astro.currentLocale);
       </div>
     </section>
   )}
+
+  <section class="border-border border-t">
+    <div class="mx-auto max-w-wide px-4 py-10 md:py-14">
+      <h2 class="text-muted font-mono text-sm">深度专题矩阵 · 科学上网权威指南</h2>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/free" class="border-border border p-5 hover:bg-surface transition-colors space-y-2 block">
+          <div class="font-mono text-xs text-muted">PILLAR 01</div>
+          <h3 class="text-base text-heading font-normal">免费资源与白嫖避坑</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Cloudflare WARP 官方合规工具、开源公益节点与签到白嫖合集，深度解析中间人劫持风险与平价过渡。
+          </p>
+        </a>
+        <a href="/faq" class="border-border border p-5 hover:bg-surface transition-colors space-y-2 block">
+          <div class="font-mono text-xs text-muted">PILLAR 02</div>
+          <h3 class="text-base text-heading font-normal">机场选购与使用全景 FAQ</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            IEPL 专线原理、TUN 虚拟网卡、90秒授时超时排错及 ChatGPT / Claude 原生解封等 20+ 核心技术百问百答。
+          </p>
+        </a>
+        <a href="/warnings" class="border-border border p-5 hover:bg-surface transition-colors space-y-2 block">
+          <div class="font-mono text-xs text-muted">PILLAR 03</div>
+          <h3 class="text-base text-heading font-normal">机场跑路预警与防收割指南</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            10 维度跑路量化自测打分表、临终四大危险特征识别、真实历史黑榜复盘与消费者防割四大黄金法则。
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
 </Base>

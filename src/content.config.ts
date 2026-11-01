@@ -19,8 +19,11 @@ const work = defineCollection({
     // 'building' dims the row, 'archived' drops it to its own group at the foot of /work.
     status: z.enum(['live', 'building', 'archived']).default('live'),
     started: z.coerce.date(), // only the year is ever printed
-    url: z.string().url().optional(),
-    repo: z.string().url().optional(),
+    url: z.string().optional(),
+    affiliateUrl: z.string().optional(),
+    coupon: z.string().optional(),
+    hasSpeedtest: z.boolean().default(false),
+    repo: z.string().optional(),
     order: z.number().int().optional(), // shelf order; without it the shelf is newest first
     draft: z.boolean().default(false),
   }),

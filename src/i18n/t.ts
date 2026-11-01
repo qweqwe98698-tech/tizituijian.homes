@@ -4,11 +4,12 @@
 import { site } from '../config';
 import en from './en';
 import ko from './ko';
+import zh from './zh';
 
 /** A count that reads differently at one: Intl.PluralRules picks the form. */
 export type Plural = { one?: string; other: string };
 
-const dicts: Record<string, typeof en> = { en, ko };
+const dicts: Record<string, typeof en> = { en, ko, zh };
 
 export const useT = (locale: string = site.locale) => dicts[locale] ?? dicts[site.locale] ?? en;
 

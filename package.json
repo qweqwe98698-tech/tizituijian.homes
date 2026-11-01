@@ -1,9 +1,9 @@
 {
-  "name": "astro-theme-leader",
+  "name": "tizituijian-homes",
   "type": "module",
-  "version": "1.2.1",
+  "version": "1.0.0",
   "private": true,
-  "description": "An Astro theme for a maker with many small products: a contents page for the things you ship and the notes you keep.",
+  "description": "梯子推荐 - 精选网络工具、优质节点服务评测与实用技术笔记导航站",
   "engines": {
     "node": ">=22.12.0"
   },

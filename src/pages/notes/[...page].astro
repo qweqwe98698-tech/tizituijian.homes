@@ -30,9 +30,34 @@ const filters = categories.filter(
 const t = useT(Astro.currentLocale);
 const description = t.notesDescription;
 const title = page.currentPage > 1 ? fmt(t.notesPage, { n: page.currentPage }) : t.notes;
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: t.notes },
+    ],
+  },
+  {
+    '@type': 'CollectionPage',
+    name: `${title} · 梯子推荐`,
+    description,
+    url: new URL('/notes/', Astro.site).href,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: page.data.map((n, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: new URL(`/notes/${n.id}/`, Astro.site).href,
+        name: n.data.title,
+      })),
+    },
+  },
+];
 ---
 
-<Base {title} {description} prev={page.url.prev} next={page.url.next}>
+<Base {title} {description} {jsonLd} prev={page.url.prev} next={page.url.next}>
   <PageHead title={t.notes} lead={description}>
     <nav class="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-lg" aria-label={t.categories}>
       {filters.map((c) => (

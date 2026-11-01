@@ -1,36 +1,66 @@
 ---
 /*
-  Placeholder. Replace the body with your own policy before you launch --
-  the page exists so the footer link is never a 404.
+  Privacy Policy page - localized and compliant.
 */
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { contact, site } from '../config';
+
+const title = '隐私政策';
+const description = `${site.name} 极其重视您的个人隐私与数据安全。本站采用无跟踪的轻量静态架构，绝不部署侵入性 Cookie，绝不收集、记录或出售任何个人身份信息。`;
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: title },
+    ],
+  },
+];
 ---
 
-<Base title="Privacy" description={`How ${site.name} handles your data.`} noindex>
-  <PageHead title="Privacy" lead={`How ${site.name} handles your data.`}>
-    <p class="text-muted mt-6 font-mono text-sm">Placeholder — replace before launch.</p>
-  </PageHead>
+<Base {title} {description} {jsonLd}>
+  <PageHead {title} lead={description} />
 
   <section class="border-border border-t">
-    <div class="mx-auto max-w-wide px-4 py-12 md:py-16">
-      <div class="prose">
+    <div class="mx-auto max-w-wide px-4 py-12 md:py-16 space-y-10">
+      <div class="prose max-w-content">
+        <h2>一、核心隐私原则</h2>
         <p>
-          This site is a set of static pages. It sets no cookies of its own and runs no third-party
-          scripts unless you enable analytics in <code>src/config.ts</code>, in which case whatever
-          that provider collects is described in their own policy.
+          <strong>{site.name}</strong> 始终将用户数据隐私置于首位。作为面向网络出海技术研究的独立静态网站，我们坚决反对互联网中泛滥的用户行为画像与跨站指纹追踪行为。
         </p>
-        <h2>What is collected</h2>
         <p>
-          Nothing, unless you send it. If you write to me through the contact page, the form service
-          handling that submission receives your name, your email address and your message, and
-          passes them to me by email. I keep those messages and nothing else.
+          本站不包含任何第三方侵入式广告跟踪脚本、社交媒体监控像素（Pixel）或用于商业画像的跨站 Cookie。
         </p>
-        <h2>Requests</h2>
+
+        <h2>二、我们收集与处理的信息</h2>
         <p>
-          Write to <a href={`mailto:${contact.email}`}>{contact.email}</a> to ask what I hold about
-          you or to have it deleted.
+          当您仅仅浏览、查阅本站的测评文章、客户端指南或推荐目录时，<strong>本站不会收集或存储任何可直接识别您个人身份的信息</strong>。
+        </p>
+        <p>
+          若您通过电子邮件主动联络本站（如进行技术咨询、反馈节点故障或提交商务合作），我们仅会出于回复您询问的目的，暂时保留您所主动提供的姓名、电子邮件地址及信件文本内容。我们承诺绝不将您的通信记录转让、出租或出售给任何第三方商业机构。
+        </p>
+
+        <h2>三、服务器日志与基础安全</h2>
+        <p>
+          与所有部署于全球骨干 CDN 边缘节点的网站相同，托管基础设施在处理 HTTP/HTTPS 请求时，可能会在系统运行日志中记录基础网络元数据（如客户端 IP 地址、浏览器 User-Agent、请求时间戳及所访问的 URL）。这些基础日志仅用于防御恶意分布式拒绝服务攻击（DDoS）、排查网络链路故障及维持基础设施的高可用性，且设置了定期自动化循环覆盖销毁机制。
+        </p>
+
+        <h2>四、第三方外部跳转链接安全声明</h2>
+        <p>
+          本站包含前往各大第三方代理机场、开源客户端软件仓库（如 GitHub）或官方服务平台的外部链接。当您点击这些链接并离开本站时，您将直接受该第三方平台的自身隐私政策与条款管辖。
+        </p>
+        <p>
+          基于网络安全最佳实践，我们强烈建议您：<strong>在注册任何第三方商业代理服务时，切勿使用与您日常核心工作、银行账户相关联的主邮箱及常用通用密码</strong>，优先采用专属别名邮箱与密码管理器生成的强密码进行账号隔离。
+        </p>
+
+        <h2>五、用户数据权利与联系方式</h2>
+        <p>
+          根据相关数据保护法规，您拥有随时向我们查询、核对或请求彻底删除您曾通过邮件向我们发送的沟通记录的权利。若您对本隐私政策有任何疑问或希望行使相关权利，请直接致信：
+        </p>
+        <p class="font-mono text-sm">
+          官方隐私事务信箱：<a href={`mailto:${contact.email}`} class="text-heading">{contact.email}</a>
         </p>
       </div>
     </div>

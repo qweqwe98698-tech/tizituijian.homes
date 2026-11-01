@@ -6,7 +6,6 @@ import SEO from '../components/common/SEO.astro';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 import Analytics from '../components/common/Analytics.astro';
-import DemoBar from '../components/common/DemoBar.astro';
 import { site } from '../config';
 import { useT } from '../i18n/t';
 
@@ -55,7 +54,6 @@ const t = useT(locale);
     >
       {t.skipToContent}
     </a>
-    <DemoBar />
     <Header nameplate={nameplate} />
     <main id="main" tabindex="-1" class="flex-1 outline-none">
       <slot />

@@ -1,0 +1,401 @@
+---
+/*
+  2026 Proxy Client Directory & Tutorial Guide.
+  Windows, Android, iOS, macOS, Linux, OpenWrt.
+*/
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+
+const title = '客户端指南';
+const description = '2026 全平台主流代理客户端下载与配置指南：Windows、macOS、iOS、Android、Linux 及 OpenWrt 软路由。';
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: title },
+    ],
+  },
+  {
+    '@type': 'TechArticle',
+    headline: '2026 全平台梯子代理客户端配置与下载推荐',
+    description,
+    datePublished: '2026-01-01',
+    dateModified: '2026-10-29',
+  },
+];
+---
+
+<Base {title} {description} {jsonLd}>
+  <PageHead {title} lead={description} />
+
+  <section class="border-border border-t">
+    <div class="mx-auto max-w-wide px-4 py-10 md:py-14">
+      <!-- Overview Intro -->
+      <div class="prose max-w-content">
+        <p>
+          机场代理客户端主要分为两类：<strong>第三方通用客户端</strong>（支持导入通用订阅链接，如 Clash Verge Rev、v2rayN、Shadowrocket 等）与<strong>机场专属定制客户端</strong>（由特定机场官方开发，通常支持一键登录，适合零基础新手）。
+        </p>
+        <p>
+          推荐优先选用基于 <strong>Mihomo (Clash Meta)</strong> 或 <strong>sing-box</strong> 现代内核的开源客户端，可原生支持 VLESS、Reality、Hysteria2、TUIC 等新一代抗封锁协议，并具备出色的 TUN 模式全局分流体验。
+        </p>
+      </div>
+
+      <!-- Quick Platform Anchors -->
+      <nav aria-label="全平台快速导航" class="my-8 flex flex-wrap items-center gap-2 border-y border-border py-4 font-mono text-xs md:text-sm">
+        <span class="text-muted mr-2">平台直达：</span>
+        <a href="#windows" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          Windows 电脑
+        </a>
+        <a href="#android" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          Android 安卓
+        </a>
+        <a href="#ios" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          iOS (iPhone/iPad)
+        </a>
+        <a href="#macos" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          macOS (Mac)
+        </a>
+        <a href="#linux" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          Linux
+        </a>
+        <a href="#openwrt" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          OpenWrt 软路由
+        </a>
+        <a href="#faq" class="border border-border bg-surface px-3 py-1.5 text-foreground hover:border-foreground no-underline">
+          新手配置 FAQ
+        </a>
+      </nav>
+
+      <!-- Section 1: Windows -->
+      <div id="windows" class="mt-12 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">一、Windows 电脑客户端推荐</h2>
+        <p class="text-muted text-xs md:text-sm mt-2 font-mono">
+          核心搜索词：Clash for Windows、Clash Verge Rev 下载、v2rayN 下载、Windows 代理软件
+        </p>
+        <div class="overflow-x-auto mt-4 border border-border bg-surface">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface font-mono text-xs text-muted">
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">客户端名称</th>
+                <th class="px-5 py-3.5 min-w-[340px] font-medium">主要特点与适用场景</th>
+                <th class="px-5 py-3.5 w-40 min-w-[160px] whitespace-nowrap font-medium">内核支持</th>
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">推荐版本与来源</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Clash Verge Rev</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  当前 Windows 桌面首选方案。原生集成 Mihomo 内核，支持 TUN 虚拟网卡模式接管全局流量，拥有现代化 UI 与灵活的规则覆写能力。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Mihomo (Clash Meta)</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub 开源维护版</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">v2rayN</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  功能最为强大的技术向客户端。原生集成 Xray 与 sing-box 双核心，支持节点自定义延迟批量测速、真连接测速以及全协议手动调试。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Xray / sing-box</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub 官方 Releases</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">FlClash</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  基于 Flutter 开发的极简跨平台客户端，内存占用轻量，界面清爽，支持常规 Clash 配置导入与智能规则分流。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Mihomo 内核</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub 跨平台发布</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Hiddify</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  多协议自适应客户端，支持一键导入多种格式订阅。自动侦测并优选低延迟节点，针对新手用户简化了配置流程。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">sing-box 核心</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub / 官网</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Karing</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  基于 sing-box 打造的现代化跨平台客户端，配置向导直观，多订阅管理与规则集路由清晰，对新手极其友好。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">sing-box 核心</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">微软商店 / GitHub</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 2: Android -->
+      <div id="android" class="mt-14 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">二、Android 安卓客户端推荐</h2>
+        <p class="text-muted text-xs md:text-sm mt-2 font-mono">
+          核心搜索词：v2rayNG 下载、安卓代理客户端、Clash Android、FlClash 安卓版
+        </p>
+        <div class="overflow-x-auto mt-4 border border-border bg-surface">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface font-mono text-xs text-muted">
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">客户端名称</th>
+                <th class="px-5 py-3.5 min-w-[340px] font-medium">主要特点与适用场景</th>
+                <th class="px-5 py-3.5 w-40 min-w-[160px] whitespace-nowrap font-medium">内核支持</th>
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">获取方式与提示</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">v2rayNG</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  安卓端覆盖率第一的经典客户端，支持单节点链接与通用订阅，后台常驻极度省电，低配置手机也能流畅运行。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Xray 内核</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub 官方 Releases</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">FlClash</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  基于 Flutter 的现代化安卓客户端，界面清爽顺滑，支持规则分流与策略组切换，操作体验媲美原生系统应用。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Mihomo 内核</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub APK 下载</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Clash Meta for Android</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  支持完整的 Clash YAML 配置和进阶策略组分流，适合高级用户深度定制分流规则及应用独立代理规则。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Mihomo 内核</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">GitHub 开源维护</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Hiddify</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  多协议全能支持，一键解析各类复杂格式订阅链接，具备智能节点测速与自动路由能力，新手开箱即用。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">sing-box 核心</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">Google Play / GitHub</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-muted font-mono mt-3">
+          * 安全警告：NekoBox 官方项目已声明维护资源有限，特别提醒不要安装非官方来源或已被第三方接管的修改包，请认准官方开源仓库 Releases。
+        </p>
+      </div>
+
+      <!-- Section 3: iOS -->
+      <div id="ios" class="mt-14 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">三、iOS (iPhone / iPad) 客户端推荐</h2>
+        <p class="text-muted text-xs md:text-sm mt-2 font-mono">
+          核心搜索词：Shadowrocket 小火箭、Stash 下载、Quantumult X 圈X、iOS 梯子软件
+        </p>
+        <div class="overflow-x-auto mt-4 border border-border bg-surface">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface font-mono text-xs text-muted">
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">客户端名称</th>
+                <th class="px-5 py-3.5 min-w-[340px] font-medium">核心特点与定位</th>
+                <th class="px-5 py-3.5 w-40 min-w-[160px] whitespace-nowrap font-medium">内核支持</th>
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">获取方式与参考定价</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Shadowrocket (小火箭)</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  iOS 用户首选客户端。协议支持极全，支持扫码导入订阅、规则分流、流量捕获与即时测速，性价比最高。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">专有高性能引擎</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">非国区 App Store ($2.99)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Stash</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  iOS 端最强 Clash 方案。完美兼容 Clash 规则与策略组覆写，支持桌面小组件实时查看流量与延迟。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Clash / Mihomo 兼容</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">非国区 App Store ($3.99)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Quantumult X (圈 X)</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  专业极客工具。以毫秒级规则匹配和低功耗著称，支持 JavaScript 脚本重写、MITM 抓包及高度定制化策略。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Quantumult X 引擎</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">非国区 App Store ($7.99)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Surge 5</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  企业级网络调试与代理套件。提供最高水准的流量监控与分流诊断，面向专业开发者和网络工程师。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Surge Engine</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">非国区 App Store (订阅制)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Karing</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  iOS 端高素质免费客户端。支持多订阅管理、规则集路由与跨平台配置同步，界面无广告，新手友好。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">sing-box 核心</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">App Store (免费下载)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-muted font-mono mt-3">
+          * 提示：iOS 主流客户端（小火箭、Stash、Quantumult X）需在非国区（如美区、日区、港区）Apple ID 商店购买下载；如暂无外区账号，可直接使用免费的 Karing。
+        </p>
+      </div>
+
+      <!-- Section 4: macOS -->
+      <div id="macos" class="mt-14 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">四、macOS 苹果电脑客户端推荐</h2>
+        <p class="text-muted text-xs md:text-sm mt-2 font-mono">
+          核心搜索词：Mac Clash 下载、Clash Verge Mac、M1/M2/M3/M4 Mac 代理软件
+        </p>
+        <div class="overflow-x-auto mt-4 border border-border bg-surface">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface font-mono text-xs text-muted">
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">客户端名称</th>
+                <th class="px-5 py-3.5 min-w-[340px] font-medium">主要优势与系统契合度</th>
+                <th class="px-5 py-3.5 w-40 min-w-[160px] whitespace-nowrap font-medium">芯片架构适配</th>
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">获取方式与格式</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Clash Verge Rev</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  macOS 端首选。原生菜单栏状态图标快速切换节点，TUN 模式全局接管命令行与终端流量，完美支持开机自启。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Intel (x64) / Apple (ARM64)</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">DMG 安装包 (GitHub)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">FlClash</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  极低内存开销，界面与 macOS 暗黑外观完美融合，支持配置即时同步与轻量系统常驻。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Universal 通用架构</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">DMG 安装包 (GitHub)</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Surge Mac</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  开发者的终极网络瑞士军刀，增强模式接管全系统网络栈，具备网络诊断、数据包嗅探与本地规则脚本编写能力。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Apple Silicon 原生优化</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">官方网站直接下载</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 5: Linux -->
+      <div id="linux" class="mt-14 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">五、Linux 客户端推荐</h2>
+        <p class="text-muted text-xs md:text-sm mt-2 font-mono">
+          核心搜索词：Linux Clash、Ubuntu 代理客户端、v2rayA Linux、Linux 科学上网
+        </p>
+        <div class="overflow-x-auto mt-4 border border-border bg-surface">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface font-mono text-xs text-muted">
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">客户端名称</th>
+                <th class="px-5 py-3.5 min-w-[340px] font-medium">适用场景与特色</th>
+                <th class="px-5 py-3.5 w-40 min-w-[160px] whitespace-nowrap font-medium">运行形态</th>
+                <th class="px-5 py-3.5 w-48 min-w-[180px] whitespace-nowrap font-medium">安装包格式</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft">
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">Clash Verge Rev</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  Linux 桌面环境（Ubuntu、Fedora、Arch 等）的首选 GUI 客户端，支持 TUN 模式免环境配置透明分流。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">桌面图形界面 (GUI)</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">AppImage / DEB / RPM</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">v2rayA</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  专为无桌面服务器、VPS 或 Linux 主机打造。通过 Web 浏览器管理节点与分流，自带透明代理系统服务。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">Web 控制面板 / 服务</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">DEB / APT / Docker</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">FlClash</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  轻量级跨平台客户端，在各类 Linux 桌面发行版上运行平稳，资源占用极小。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">桌面图形界面 (GUI)</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">AppImage / Tar.gz</td>
+              </tr>
+              <tr class="hover:bg-background transition-colors">
+                <td class="px-5 py-4 font-medium text-foreground whitespace-nowrap">sing-box for Desktop</td>
+                <td class="px-5 py-4 text-foreground/90 leading-relaxed">
+                  官方原生内核客户端，适合极客用户编写 JSON 配置文件以实现最高性能的底层路由与网络代理。
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-muted whitespace-nowrap">CLI / 原生核心</td>
+                <td class="px-5 py-4 font-mono text-xs text-foreground whitespace-nowrap">官方二进制 / 源码</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 6: OpenWrt & Routing -->
+      <div id="openwrt" class="mt-14 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">六、OpenWrt 软路由与网关客户端</h2>
+        <div class="prose max-w-content mt-4">
+          <p>
+            软路由方案适合全屋智能家居设备、Apple TV、电视盒子以及游戏主机（PS5 / Switch / Xbox）实现免客户端全局自动科学上网：
+          </p>
+          <ul>
+            <li><strong>OpenClash</strong>：集成 Mihomo/Clash 核心，功能最为完备，支持 Dev/Meta 双内核一键切换与防止 DNS 污染劫持。</li>
+            <li><strong>PassWall2</strong>：轻量级 Xray/sing-box 插件，资源开销极小，适合老旧配置路由器与中低端芯片稳定运行。</li>
+            <li><strong>Nikki</strong>：专为 OpenWrt 24.10+ 新版设计的现代化透明代理管理面板，界面清爽现代，配置简练。</li>
+            <li><strong>HomeProxy</strong>：基于 sing-box 现代内核的轻量级透明代理，内存占用小、转发性能强。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div id="faq" class="mt-14 border-t border-border pt-10 scroll-mt-24">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">七、新手配置常见排错 FAQ</h2>
+        <div class="prose max-w-content mt-6">
+          <h3>1. 订阅导入后所有节点测速超时或显示“Timeout”？</h3>
+          <p>
+            绝大多数超时并非节点故障，而是<strong>本地系统时间不准确</strong>所致。VLESS、VMess 等现代加密协议要求设备本地时间与网络授时标准误差不得超过 90 秒。请在系统设置中确认开启「自动从互联网同步时间」。
+          </p>
+          <h3>2. 为什么一定要开启 TUN 模式（虚拟网卡）？</h3>
+          <p>
+            传统的「系统代理」仅能接管主动遵循 HTTP 代理协议的浏览器程序，而命令行工具（git / pip / docker）、游戏客户端（Steam / Epic）、第三方桌面应用往往会绕过系统代理。开启 TUN 模式后，客户端会在系统底层建立一张虚拟网卡，全盘无死角接管所有网络流量。
+          </p>
+          <h3>3. 访问 ChatGPT、Claude 或 Netflix 提示访问受限？</h3>
+          <p>
+            海外流媒体与 AI 平台对数据中心 IP 进行了严格的风控限制。若提示被拦截，请尝试在客户端策略组中切换至带有「原生落地」或「AI 优化」标记的特定地区节点（如美国原生、新加坡、台湾、日本），并清理浏览器 Cookie 后重试。
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer navigation links -->
+      <div class="mt-16 border-t border-border pt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-sm">
+        <a href="/work" class="text-muted hover:text-foreground no-underline">
+          ← 浏览 42 家精选机场推荐
+        </a>
+        <a href="/notes" class="text-muted hover:text-foreground no-underline">
+          阅读最新测速评测笔记 →
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

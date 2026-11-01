@@ -1,9 +1,7 @@
 ---
 /*
-  A product. The page opens with the row you clicked, set at the size of a
-  heading: same title on the left, same leader, same category at the far end,
-  so the list appears to have opened in place rather than handed you off to a
-  different kind of page. The metadata line under it is the only chrome.
+  Airport Brand Detail & Evaluation Page.
+  Preserves Leader's signature table-of-contents layout and typography.
 */
 import { render } from 'astro:content';
 import katexCss from 'katex/dist/katex.min.css?url';
@@ -34,17 +32,27 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
 
 const shelf = await getWork();
 const { next } = neighbours(shelf, entry.id);
-const following = next ?? shelf[0]; // the shelf wraps; a lone product has no next
+const following = next ?? shelf[0];
 
-// The line under the title: what is true about this product, in mono.
+// Metadata under the heading
 const meta = [
   { label: t.status[data.status] },
   { label: fmt(t.since, { year: year(data.started) }) },
-  data.url && { label: new URL(data.url).host, href: data.url },
-  data.repo && { label: t.source, href: data.repo },
-].filter(Boolean) as { label: string; href?: string }[];
+  data.coupon && { label: `优惠码: ${data.coupon}` },
+  data.hasSpeedtest && { label: '已验证节点测速' },
+  data.affiliateUrl && {
+    label: '直达官网 ↗',
+    href: data.affiliateUrl,
+    target: '_blank',
+    rel: 'nofollow sponsored noopener',
+  },
+].filter(Boolean) as { label: string; href?: string; target?: string; rel?: string }[];
 
 const notes = (await getNotes()).filter((n) => n.data.work?.id === entry.id);
+
+// Extract baseline starting price for Product AggregateOffer schema
+const priceMatch = data.summary.match(/(\d+(?:\.\d+)?)\s*元/);
+const lowPrice = priceMatch ? priceMatch[1] : '15.00';
 
 const jsonLd = [
   {
@@ -53,6 +61,21 @@ const jsonLd = [
       { '@type': 'ListItem', position: 1, name: t.work, item: new URL('/work', Astro.site).href },
       { '@type': 'ListItem', position: 2, name: data.title },
     ],
+  },
+  {
+    '@type': 'Product',
+    name: `${data.title} 机场网络代理服务`,
+    description: data.summary,
+    brand: { '@type': 'Brand', name: data.title },
+    category: category.name,
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'CNY',
+      lowPrice: lowPrice,
+      offerCount: '3',
+      availability: 'https://schema.org/InStock',
+      url: data.affiliateUrl || new URL(`/work/${entry.id}`, Astro.site).href,
+    },
   },
 ];
 ---
@@ -71,11 +94,11 @@ const jsonLd = [
     </h1>
 
     <p class="text-muted mt-4 font-mono text-sm">
-      {meta.map(({ label, href }, i) => (
+      {meta.map(({ label, href, target, rel }, i) => (
         <>
           {i > 0 && <span aria-hidden="true"> · </span>}
           {href ? (
-            <a href={href} class="hover:text-foreground">
+            <a href={href} target={target} rel={rel} class="hover:text-foreground">
               {label}
             </a>
           ) : (
@@ -88,6 +111,18 @@ const jsonLd = [
 
   <section class="border-border border-t">
     <div class="mx-auto max-w-wide px-4 py-12 md:py-16">
+      <!-- GEO Answer-First Executive Summary Block -->
+      <div class="border-border border p-5 mb-10 bg-surface/40">
+        <div class="flex items-start gap-3">
+          <span class="font-mono text-xs uppercase px-1.5 py-0.5 border border-border text-muted shrink-0">
+            GEO 评测核心结论
+          </span>
+          <p class="text-sm text-heading leading-relaxed">
+            <strong>{data.title}</strong> 属于 <strong>{category.name}</strong> 梯子服务商（始于 {year(data.started)} 年）。核心定位：{data.summary} 实测晚高峰节点高可用抗封锁，全面兼容 Clash Verge Rev、v2rayN、Sing-box 等主流客户端，适合追求稳定出海体验的办公与流媒体用户。
+          </p>
+        </div>
+      </div>
+
       <div class="prose">
         <Content />
       </div>

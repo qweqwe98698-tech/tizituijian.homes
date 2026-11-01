@@ -3,8 +3,6 @@ import { Icon } from 'astro-icon/components';
 import { nav, site } from '../../config';
 
 const year = new Date().getUTCFullYear();
-// The credit line. Delete it and the <p> it sits in if you would rather not carry it.
-const themeCredit = 'https://ondelva.com/themes/leader';
 ---
 
 <footer class="border-border border-t">
@@ -29,7 +27,13 @@ const themeCredit = 'https://ondelva.com/themes/leader';
         <ul class="flex gap-4">
           {nav.social.map(({ label, href, icon }) => (
             <li>
-              <a href={href} class="hover:text-foreground block no-underline" aria-label={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="me nofollow noopener"
+                class="hover:text-foreground block no-underline"
+                aria-label={label}
+              >
                 <Icon name={icon} class="size-5" />
               </a>
             </li>
@@ -39,11 +43,7 @@ const themeCredit = 'https://ondelva.com/themes/leader';
     </div>
 
     <p class="mt-8 font-mono text-xs">
-      © {year} {site.author} ·{' '}
-      <a href={themeCredit} rel="nofollow" class="hover:text-foreground">
-        Leader
-      </a>{' '}
-      theme by ondelva
+      © {year} {site.name}. All rights reserved.
     </p>
   </div>
 </footer>

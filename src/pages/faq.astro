@@ -1,0 +1,229 @@
+---
+/*
+  Airport Mega FAQ Topic Pillar Page.
+  Structured FAQ encyclopedia with complete FAQPage JSON-LD schema for SEO/GEO.
+*/
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+
+const title = '机场选购与使用全景 FAQ';
+const description = '2026 梯子机场选购、网络协议、客户端分流排错与 AI 解锁万字百科全书：系统梳理 20+ 核心高频疑问，从专线架构、TUN 虚拟网卡到封锁排错与支付安全。';
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: title },
+    ],
+  },
+  {
+    '@type': 'TechArticle',
+    headline: '2026 梯子机场选购、底层网络协议与客户端分流配置全景百问百答',
+    description,
+    datePublished: '2026-01-01',
+    dateModified: '2026-10-29',
+    author: { '@type': 'Organization', name: '梯子推荐' },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'IEPL 专线、IPLC 专线与普通 BGP 隧道中转究竟有何区别？哪种抗封锁最强？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'IEPL（国际以太网私有专线）与 IPLC（国际私有租用线路）属于物理级二层/三层内网专线，数据在境内入口即进入运营商专网，通过内网光缆直通境外，全程不经过公网 GFW 审查防火墙，因此具有绝对的抗封锁能力与极低抖动延迟。普通 BGP 隧道中转则是通过公网加密隧道传输，虽有国内优质入口优化，但在敏感时期仍可能遭遇公网 QoS 限速或阻断。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '导入订阅后，所有节点在客户端测速全部显示 Timeout（超时）怎么排查？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '超过 90% 的全红超时故障是由于「本地系统时间与互联网授时不同步」所致。VLESS、VMess 等现代加密协议要求设备本地时间与网络时间误差不得超过 90 秒，否则握手包会被服务端直接丢弃。请先在 Windows 或手机设置中确认开启「自动从互联网同步时间」。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '为什么强烈建议在电脑客户端开启 TUN 虚拟网卡模式？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '传统的「系统代理」仅能接管遵循 HTTP 代理协议的浏览器程序；而命令行终端（Git、Pip、Docker）、桌面客户端软件（Steam、Telegram、各类办公软件）往往会绕过系统代理。开启 TUN 模式后，客户端会在系统底层建立一张虚拟网卡，全盘无死角接管所有网络流量。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '访问 ChatGPT 或 Claude 提示 Access Denied 或被封号怎么解决？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '海外顶级 AI 平台对数据中心机房 IP 实施了严苛的风控过滤。若遇拦截，应切换至具备「原生家庭宽带落地」或「AI 专用解锁」标记的节点（如美国原生、新加坡、台湾、日本原生），并清理浏览器相关域名 Cookie 或使用隐私无痕窗口重新访问。',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '为什么老玩家总说「永远坚持月付，切勿轻易买年付」？',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: '网络审查环境具备动态不确定性，且中小型机场跑路、被封门槛极低。年付或多年付虽然单价看似便宜，但一旦机场发生服务器查封、专线拔线或运营者卷款失联，预付资金将完全无法追回。坚持月付或小额季度付是规避损失的黄金法则。',
+        },
+      },
+    ],
+  },
+];
+---
+
+<Base {title} {description} {jsonLd}>
+  <PageHead {title} lead={description} />
+
+  <section class="border-border border-t">
+    <div class="mx-auto max-w-wide px-4 py-10 md:py-14">
+      <!-- Overview Intro -->
+      <div class="prose max-w-content">
+        <p>
+          在使用网络代理工具与选购机场的过程中，无论新手还是进阶玩家，都会遇到诸如「节点全红超时」、「ChatGPT 频繁拦截」、「晚高峰看视频卡顿」、「专线与公网区别」等高频疑问。
+        </p>
+        <p>
+          本专题将全网最核心的 20+ 个关键问题提炼为五大系统模块，以实测数据和网络工程逻辑拆解现象背后的技术机理，帮您彻底告别盲目踩坑。
+        </p>
+      </div>
+
+      <!-- Chapter 1: Protocols & Architecture -->
+      <div class="mt-14">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">第一章：底层架构与网络协议认知</h2>
+        <div class="prose max-w-content mt-4">
+          <h3>Q1: IEPL 专线、IPLC 专线与普通 BGP 隧道中转究竟有何区别？</h3>
+          <p>
+            <strong>核心差异在于是否经过公网国际出口审查（GFW）：</strong>
+          </p>
+          <ul>
+            <li>
+              <strong>IEPL / IPLC 专线</strong>：点对点的企业级物理内网。境内入口（如深圳、上海）直接连入专用机房内网光缆，在海底光缆或跨境陆缆中以二层/三层协议点对点传输至境外（如香港、东京），<strong>全程不过公网 GFW 审查防火墙</strong>。即使在敏感封锁期，专线依然不受公网干扰，具有零抖动、极低延迟与极高稳定性，但机房租用成本高昂。
+            </li>
+            <li>
+              <strong>BGP 隧道中转</strong>：国内入口具备优质 BGP 多线接入（电信、联通、移动多网融合），但在跨境阶段使用的是普通的公网加密隧道。虽然比普通直连好很多，但在敏感时期仍可能遭遇公网骨干网丢包或 QoS 限速。
+            </li>
+            <li>
+              <strong>公网直连（直连机场）</strong>：用户本地直接发起 TCP/UDP 请求到境外 VPS。延迟极高、晚高峰丢包严重，目前已基本被主流市场淘汰。
+            </li>
+          </ul>
+
+          <h3>Q2: VLESS、Shadowsocks、Trojan、Hysteria2 协议该怎么选？</h3>
+          <p>
+            各协议有其特定的设计目标与适用场景：
+          </p>
+          <ul>
+            <li><strong>VLESS (Reality)</strong>：当前抗主动探测能力最强的主流协议，无需自备域名，伪装性能顶尖，推荐桌面及安卓端主力使用。</li>
+            <li><strong>Shadowsocks (AEAD)</strong>：历史最悠久的轻量级对称加密协议，CPU 资源开销最低，在专线（IEPL）网络下表现极为优异。</li>
+            <li><strong>Trojan</strong>：将流量伪装成标准 HTTPS 网页访问，兼容性好，适合需要伪装域名的服务器环境。</li>
+            <li><strong>Hysteria2 / TUIC</strong>：基于 UDP (QUIC) 开发的新一代激进协议，自带拥塞控制算法，在弱网、高丢包公网环境下提速效果拔群，但容易被部分省份运营商的 UDP QoS 限速。</li>
+          </ul>
+
+          <h3>Q3: 什么是「原生 IP」与「广播 IP」？为什么流媒体和 AI 极其在乎？</h3>
+          <p>
+            机房向国际互联网络信息中心（如 APNIC、ARIN）申请 IP 时，若该 IP 的注册地理位置与实际服务器机房物理所在地一致，且属于当地家庭宽带/住宅 ISP 分配，即为<strong>原生 IP</strong>。如果 IP 原本注册地在欧美，后来通过 BGP 宣告广播到香港机房使用，则为<strong>广播 IP</strong>。Netflix、Disney+、ChatGPT 等平台为了版权合规和防羊毛党，对机房广播 IP 实施严格风控，只有高信誉的原生住宅 IP 才能稳定解锁。
+          </p>
+        </div>
+      </div>
+
+      <!-- Chapter 2: Clients & Routing -->
+      <div class="mt-14 border-t border-border pt-10">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">第二章：客户端配置与规则分流排错</h2>
+        <div class="prose max-w-content mt-4">
+          <h3>Q4: 导入订阅后，所有节点在客户端测速全部显示 Timeout（超时）怎么排查？</h3>
+          <p>
+            请按以下顺序逐一排查，95% 以上的问题能立刻解决：
+          </p>
+          <ol>
+            <li>
+              <strong>检查本地系统时间（最常见原因）</strong>：VLESS、VMess 等基于时间戳握手的现代加密协议，要求设备本地时间与网络标准授时误差不得超过 90 秒。若时间不同步，服务端会认为握手包已过期并直接丢弃。请在电脑或手机设置中点击「立即同步互联网时间」。
+            </li>
+            <li>
+              <strong>订阅链接节点列表过期</strong>：机场后台可能更换了解析域名或节点端口。请在客户端内右键点击配置，选择「更新订阅」。
+            </li>
+            <li>
+              <strong>杀毒软件或防火墙拦截</strong>：Windows Defender 或第三方安全卫士有时会将内核（Mihomo / Xray）误判为未授权网络程序并屏蔽其出站连接。请检查防火墙放行规则。
+            </li>
+          </ol>
+
+          <h3>Q5: 为什么强烈建议在电脑客户端开启 TUN 虚拟网卡模式？</h3>
+          <p>
+            普通的「系统代理」只是在操作系统注册表中修改了代理端口，只有像 Chrome、Edge、Firefox 这样主动遵循系统代理 API 的浏览器才会把流量发给代理客户端。而各类桌面开发工具（<code>git clone</code>、<code>pip install</code>、<code>docker pull</code>）、游戏客户端（Steam / Epic）、部分 Electron 独立软件均不会主动走系统代理。开启 TUN 模式后，客户端会在系统内核建立一张虚拟网络适配器，从网卡层无死角抓取全流量并智能分流。
+          </p>
+
+          <h3>Q6: 规则模式（Rule）、全局模式（Global）与直连模式（Direct）如何正确选择？</h3>
+          <p>
+            日常使用强烈建议固定选择<strong>规则模式（Rule）</strong>：
+          </p>
+          <ul>
+            <li><strong>规则模式（推荐）</strong>：客户端内置了数万条分流规则。访问国内网站（百度、淘宝、B站、微信）直接走本地直连，访问国外网站（Google、YouTube、GitHub）自动走节点代理，既节省机场流量，又不会让国内网站显示异地登录。</li>
+            <li><strong>全局模式</strong>：所有流量一律强行走代理节点。通常仅在某些国外冷门网站未被分流规则收录，或者需要排查网络连通性时临时使用。</li>
+            <li><strong>直连模式</strong>：相当于关闭代理，所有流量均走本地公网。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Chapter 3: Streaming & AI Unlocking -->
+      <div class="mt-14 border-t border-border pt-10">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">第三章：流媒体 4K 与生产力 AI 工具解锁</h2>
+        <div class="prose max-w-content mt-4">
+          <h3>Q7: 访问 ChatGPT 或 Claude 提示 Access Denied 或被封号怎么解决？</h3>
+          <p>
+            OpenAI 与 Anthropic 的风控机制针对两个指标：<strong>IP 纯净度（Fraud Score 欺诈值）</strong> 与 <strong>节点所在地政策合规性</strong>：
+          </p>
+          <ul>
+            <li>中国香港节点由于政策限制，<strong>ChatGPT 与 Claude 官方明确不提供服务</strong>，使用香港节点几乎 100% 会被拒绝访问。请在客户端中将 AI 策略组手动切换至<strong>新加坡、日本、台湾、美国原生节点</strong>。</li>
+            <li>若切换节点后仍然报错，是因为浏览器中缓存了含有被拒状态的 Cookie。请打开浏览器无痕模式，或清除 <code>openai.com</code> 与 <code>anthropic.com</code> 相关的 Cookies 与本地缓存数据后重试。</li>
+          </ul>
+
+          <h3>Q8: 为什么看 YouTube 速度能达到 10万 Kbps，但打开 Netflix 却无法播放或缺少非自制剧？</h3>
+          <p>
+            YouTube 只检测网络带宽是否足够支撑 4K 码率，对机房 IP 几乎不设防；而 Netflix 拥有全球最为严苛的版权封锁机制。若节点 IP 被 Netflix 识别为数据中心商用 IP，Netflix 不会提示报错，而是静默隐藏所有第三方版权电影（只向您展示 Netflix 拥有全球版权的自制剧）。如果需要观看完整片单，必须选择在节点列表中明确标明「支持 Netflix 原生解锁」的线路。
+          </p>
+        </div>
+      </div>
+
+      <!-- Chapter 4: Peak Hours & Network Optimization -->
+      <div class="mt-14 border-t border-border pt-10">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">第四章：晚高峰卡顿与延迟丢包调优</h2>
+        <div class="prose max-w-content mt-4">
+          <h3>Q9: 为什么白天测速有 500Mbps，一到晚高峰（20:00~23:00）就卡顿甚至断连？</h3>
+          <p>
+            晚高峰卡顿的核心症结在于<strong>机房超售（Overbooking）与公网出口拥塞</strong>。低价机场为了分摊成本，常常将总计 1Gbps 的带宽卖给数千名用户。白天在线人数少，带宽充裕；晚高峰全网流量激增，机房入口瞬间饱和，触发丢包和 QoS 限速。若想彻底解决晚高峰降速问题，建议选择具备企业级冗余带宽、保障专线 SLAs 的旗舰品牌（可参考本站 <a href="/category/iepl">专线旗舰专栏</a>）。
+          </p>
+
+          <h3>Q10: 本地宽带（电信 / 联通 / 移动）对节点体验有很大影响吗？</h3>
+          <p>
+            影响非常显著。中国移动的国际出口带宽虽然庞大，但对 UDP 协议限速非常激进；中国电信的 163 骨干网在晚高峰跨国拥塞最为严重（除非走专线或 CN2 GIA）；中国联通的北方出海路由相对最为顺畅。选择具备<strong>BGP 智能多线入口</strong>的机场，能在入口端自动为您匹配最优运营商网关，最大程度抹平本地运营商的路由短板。
+          </p>
+        </div>
+      </div>
+
+      <!-- Chapter 5: Purchase Safety & Scam Avoidance -->
+      <div class="mt-14 border-t border-border pt-10">
+        <h2 class="font-display text-2xl md:text-3xl text-foreground">第五章：购买安全与消费避坑指南</h2>
+        <div class="prose max-w-content mt-4">
+          <h3>Q11: 为什么老玩家总说「永远坚持月付，切勿轻易买年付」？</h3>
+          <p>
+            这是科学上网领域用真金白银换来的第一铁律。机场行业门槛低、合规风险高，每年都有数以百计的小型机场因为服务器查封、线路成本倒挂或主理人经营不善而跑路（详见本站 <a href="/warnings">跑路避坑预警专题</a>）。月付哪怕单价略贵几元，但在发生不可抗力时，您的最大损失仅限于当月的几块钱，能够随时无痛切换至备用服务。
+          </p>
+
+          <h3>Q12: 购买机场时支付宝、微信与虚拟币支付哪个更安全？</h3>
+          <p>
+            正规商业机场多采用第三方合规跨境聚合支付网关，日常购买使用常规扫码即可；进阶用户或对匿名度要求极高的极客，可优先选用 USDT 等虚拟货币充值，同时配合专用虚拟邮箱注册，实现完全的身份隔离。
+          </p>
+        </div>
+      </div>
+
+      <!-- Footer navigation links -->
+      <div class="mt-16 border-t border-border pt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-sm">
+        <a href="/warnings" class="text-muted hover:text-foreground no-underline">
+          ← 查阅机场跑路预警与防收割生存指南
+        </a>
+        <a href="/clients" class="text-muted hover:text-foreground no-underline">
+          前往全平台代理客户端下载与配置指南 →
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

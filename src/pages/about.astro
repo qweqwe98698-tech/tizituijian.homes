@@ -1,43 +1,105 @@
 ---
 /*
-  One page about the person behind the shelf. Replace the copy; the shape --
-  what you make, how you work, how to reach you -- is what the theme is for.
+  About page - E-E-A-T and editorial transparency.
+  Fully localized in Chinese for tizituijian.homes.
 */
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import { contact, site } from '../config';
 
-const description = `${site.author} builds small web tools and writes down what happens.`;
+const title = '关于我们';
+const description = `${site.name} 是一个专注于 2026 高速梯子机场实测、国际网络出海协议研究与客观选购指南的独立技术门户。我们坚持真实网络环境测速与透明基准，拒绝过度商业包装。`;
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: title },
+    ],
+  },
+  {
+    '@type': 'AboutPage',
+    name: `${title} · ${site.name}`,
+    description,
+    mainEntity: {
+      '@type': 'Organization',
+      name: site.name,
+      url: site.url,
+      email: contact.email,
+    },
+  },
+];
 ---
 
-<Base title="About" {description}>
-  <PageHead title="About" lead={description} />
+<Base {title} {description} {jsonLd}>
+  <PageHead {title} lead={description} />
 
   <section class="border-border border-t">
-    <div class="mx-auto max-w-wide px-4 py-12 md:py-16">
-      <div class="prose">
+    <div class="mx-auto max-w-wide px-4 py-12 md:py-16 space-y-12">
+      <!-- Section 1: Mission -->
+      <div class="prose max-w-content">
+        <h2>平台宗旨与创立初心</h2>
         <p>
-          I build small web tools, usually to solve something that annoyed me first. Most of them
-          stay small on purpose: a status page that fits in one browser tab, a backup schedule that
-          tells you when it did not run, a script that turns a folder of invoices into a table.
+          在当今网络环境下，科学上网与国际出海网络连接已成为跨境电商、软件开发、学术科研及数字游民不可或缺的基础设施。然而，现存的大多数测评网站充斥着虚假的满分好评、廉价的返利诱导，甚至为明知即将跑路的资金盘机场站台背书。
         </p>
         <p>
-          Everything I have shipped is on the <a href="/work">work</a> page, including the things I
-          have since switched off. A product that stopped being worth running is not a failure worth
-          hiding; the page keeps it, marked archived, with the note explaining what replaced it.
+          <strong>{site.name}</strong> 诞生于对信息真实性的追求。我们剥离了一切花哨的营销弹窗与浮夸特效，采用纯净的类出版物排印系统（Leader Printed-Matter），旨在为用户建立一个<strong>客观、严谨、以物理测试数据为准绳</strong>的长期避坑与决策中枢。
         </p>
-        <h2>How I work</h2>
-        <p>
-          One project at a time, in the open, with the boring parts written down as I go. The{' '}
-          <a href="/notes">notes</a> are that record: what a decision cost, what I would do
-          differently, what the bill looked like at the end of the month.
+      </div>
+
+      <!-- Section 2: Methodology -->
+      <div class="prose max-w-content">
+        <h2>独立测评方法论与测试基准</h2>
+        <p>本站对所收录的全部 42 家机场品牌及推荐节点执行严格的端到端测试准则：</p>
+        <ul>
+          <li>
+            <strong>晚高峰实测压力测试（20:00 ~ 23:00）：</strong>白天闲时带宽无参考价值，所有测速数据与 YouTube 4K/8K 缓冲曲线均截取自国际骨干网最拥堵的晚高峰时段。
+          </li>
+          <li>
+            <strong>三大运营商本地多链路采样：</strong>由位于国内不同省份的中国电信（163/CN2）、中国联通（169/9929）、中国移动（CMI）真实家庭宽带及云主机环境发起基准测试，杜绝单一机房测试偏差。
+          </li>
+          <li>
+            <strong>真实流媒体与 AI 解锁审计：</strong>逐一核验各落地节点的 IP 属性，区分原生家庭宽带（ISP/双 ISP）与机房广播 IP，实测验证 ChatGPT、Claude、Netflix、Disney+ 的真实可用性与分流有效性。
+          </li>
+          <li>
+            <strong>全协议现代内核验证：</strong>深度测试 VLESS、Hysteria2、TUIC、Shadowsocks 等协议在多端现代客户端（Clash Verge Rev、v2rayN、Sing-box 等）上的兼容表现与 TUN 模式接管稳定性。
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section 3: Inclusion Standards -->
+      <div class="prose max-w-content">
+        <h2>收录与准入门槛</h2>
+        <p>并非所有商业服务都会被本站收录。我们的收录与评级建立在以下刚性红线之上：</p>
+        <ol>
+          <li><strong>坚持月付机制：</strong>不提供月付选项、强制要求一次性充值 3~5 年大套餐的品牌一律不予推荐。</li>
+          <li><strong>真实物理交付：</strong>凡虚假宣传所谓“全 IPLC 专线”却以远低于国际光缆成本抛售的换皮盘，列入跑路重点观察名单。</li>
+          <li><strong>客户服务与工单响应：</strong>要求服务商具备公开的社群交流环境或 24 小时内工单响应机制，社群全员永久禁言且客服失联者直接下架清退。</li>
+        </ol>
+      </div>
+
+      <!-- Section 4: Affiliate & Editorial Disclosure -->
+      <div class="border-border border p-6 bg-surface/30 space-y-3">
+        <h3 class="text-base text-heading font-normal">利益透明与商业声明（Affiliate Disclosure）</h3>
+        <p class="text-sm text-muted leading-relaxed">
+          为了维持服务器运行开销与长周期节点测速账单，本站部分页面包含商业推广链接（Affiliate Links）。当您通过本站链接注册并购买服务时，服务商可能会向本站支付少量返利，但这<strong>绝不会增加您的最终支付费用</strong>，反而通常可享受本站专属优惠码。
         </p>
-        <h2>Elsewhere</h2>
+        <p class="text-sm text-muted leading-relaxed">
+          商业合作<strong>绝不干预、修改或粉饰本站的真实测评结论</strong>。任何服务商若发生持续性断网、服务降级或跑路征兆，本站将第一时间在 <a href="/warnings" class="text-heading underline">跑路预警专题</a> 中进行预警披露并下架推荐位。
+        </p>
+      </div>
+
+      <!-- Section 5: Contact -->
+      <div class="prose max-w-content">
+        <h2>技术交流与反馈通道</h2>
         <p>
-          The fastest way to reach me is email:{' '}
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>. There is also a{' '}
-          <a href="/contact">contact page</a>, and the site has an <a href="/rss.xml">RSS feed</a>{' '}
-          if you would rather have the notes come to you.
+          如果您在测速数据、节点可用性或客户端使用中发现任何纰漏，或者希望向我们提供最新跑路机场线索，欢迎随时联络我们：
+        </p>
+        <p class="font-mono text-sm">
+          官方服务信箱：<a href={`mailto:${contact.email}`} class="text-heading">{contact.email}</a><br />
+          客户端配置手册：<a href="/clients">查阅客户端全平台指南 →</a><br />
+          常见技术百问百答：<a href="/faq">查阅机场选购 FAQ →</a>
         </p>
       </div>
     </div>

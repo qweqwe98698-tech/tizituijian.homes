@@ -35,6 +35,7 @@ const og = typeof card === 'string' ? { src: card, width: 1200, height: 630 } : 
 const ogImage = new URL(og.src, Astro.site);
 const home = new URL('/', Astro.site).href;
 const locale = Astro.currentLocale ?? site.locale;
+const ogLocale = locale === 'zh' ? 'zh_CN' : locale === 'en' ? 'en_US' : locale;
 
 const schema = [
   {
@@ -46,6 +47,14 @@ const schema = [
     inLanguage: locale,
     publisher: { '@type': seo.jsonLd.type, name: seo.jsonLd.name, url: home },
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.name,
+    url: home,
+    description: site.description,
+    logo: new URL('/favicon.svg', Astro.site).href,
+  },
   ...jsonLd.map((d) => ({ '@context': 'https://schema.org', ...d })),
 ];
 // prevent </script> injection
@@ -54,15 +63,28 @@ const schemaJson = JSON.stringify(schema).replace(/</g, '\\u003c');
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+<meta name="author" content={site.author} />
+{seo.verification?.google && <meta name="google-site-verification" content={seo.verification.google} />}
+{seo.verification?.bing && <meta name="msvalidate.01" content={seo.verification.bing} />}
+{seo.verification?.baidu && <meta name="baidu-site-verification" content={seo.verification.baidu} />}
+{seo.verification?.shenma && <meta name="shenma-site-verification" content={seo.verification.shenma} />}
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+  </>
+)}
 {prev && <link rel="prev" href={new URL(prev, Astro.site)} />}
 {next && <link rel="next" href={new URL(next, Astro.site)} />}
 <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
+<link rel="sitemap" href="/sitemap.xml" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={site.name} />
-<meta property="og:locale" content={locale} />
+<meta property="og:locale" content={ogLocale} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

@@ -1,22 +1,81 @@
 /*
-  theme.css -- your overrides. This is the file to edit to retheme the site.
-
-  Every token lives in src/styles/tokens.css with its default value. Declarations
-  here are unlayered, so they win without specificity tricks.
-
-  Colors are defined with light-dark(). Overriding with a plain color changes
-  light and dark mode at once; use light-dark(<light>, <dark>) to keep them apart.
-  Webfonts are loaded in astro.config.mjs; use overrides here for system fonts.
-  Whatever you write here is measured by `pnpm check:contrast`.
-
-  Example:
-
-  :root {
-    --primary: light-dark(#8c1f2f, #e08792);
-    --font-body: Charter, 'Iowan Old Style', Georgia, serif;
-    --radius: 0;
-  }
+  theme.css -- visual overrides for tizituijian.homes
+  Elevates typography, technical ledger tables, and Chinese readability
+  while adhering 100% to Leader theme's aesthetic rules.
 */
 
 :root {
+  /* Layout: Expand article measure so 3-5 column technical tables have comfortable room */
+  --content-width: 48rem;
+
+  /* Typography fallback stack for crisp Chinese character rendering */
+  --font-body: var(--font-sans-face, ui-sans-serif), -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-heading: var(--font-sans-face, ui-sans-serif), -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+
+  /* Weights strictly adhere to AGENTS.md rule: display 200, body 300, strong 400 */
+  --weight-display: 200;
+  --weight-body: 300;
+  --weight-strong: 400;
+}
+
+/* Chinese typography: prevent tight negative tracking from squishing Hanzi strokes */
+h1, h2, h3, h4, h5, h6, .font-display {
+  letter-spacing: -0.01em;
+}
+
+/* Global Markdown Prose Table Polish */
+.prose table,
+article.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-block: 1.8em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: table;
+}
+
+.prose th,
+article.prose th {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: var(--weight-strong);
+  color: var(--foreground);
+  background: var(--surface);
+  border-block-end: 2px solid var(--border);
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+.prose td,
+article.prose td {
+  padding: 0.75rem 1rem;
+  border-block-end: 1px solid var(--border-soft);
+  vertical-align: top;
+  color: var(--foreground);
+}
+
+.prose td:first-child,
+article.prose td:first-child {
+  white-space: nowrap;
+  font-weight: var(--weight-strong);
+}
+
+.prose tr:hover td,
+article.prose tr:hover td {
+  background: var(--background);
+}
+
+/* Responsive horizontal scrolling for markdown tables on mobile devices */
+@media (max-width: 768px) {
+  .prose table,
+  article.prose table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: normal;
+  }
 }

@@ -35,6 +35,17 @@ const taskListLabels = {
 export default defineConfig({
   // SITE_URL overrides config.ts at build time (used by demo deploys).
   site: process.env.SITE_URL ?? site.url,
+  redirects: {
+    '/catalogue': '/work',
+    '/speedtest': '/notes',
+    '/brands': '/work',
+    '/jichang': '/work',
+    '/tizi': '/work',
+    '/vpn': '/work',
+    '/tutorial': '/notes',
+    '/nodes': '/notes',
+    '/clash': '/clients',
+  },
   integrations: [
     mdx(),
     sitemap({ filter: (page) => !page.endsWith('/styleguide/') }),
@@ -43,9 +54,6 @@ export default defineConfig({
       name: 'theme-styleguide',
       hooks: {
         'astro:config:setup': ({ command, injectRoute }) => {
-          // Demo builds only (the demo bar links to it): the changelog as a page
-          if (process.env.PUBLIC_DEMO_BUY_URL)
-            injectRoute({ pattern: '/whats-new', entrypoint: './src/pages/_whats-new.astro' });
           // Dev only: the styleguide is a design tool, not a page buyers ship.
           if (command === 'dev')
             injectRoute({ pattern: '/styleguide', entrypoint: './src/pages/_styleguide.astro' });

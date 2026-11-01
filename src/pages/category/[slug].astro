@@ -40,9 +40,34 @@ const counts = [
 ]
   .filter(Boolean)
   .join(' · ');
+
+const jsonLd = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: category.name },
+    ],
+  },
+  {
+    '@type': 'CollectionPage',
+    name: `${category.name} · ${site.name}`,
+    description: category.blurb,
+    url: new URL(`/category/${category.slug}/`, Astro.site).href,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: work.map((w, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: new URL(`/work/${w.id}/`, Astro.site).href,
+        name: w.data.title,
+      })),
+    },
+  },
+];
 ---
 
-<Base title={category.name} description={category.blurb}>
+<Base title={category.name} description={category.blurb} {jsonLd}>
   <PageHead title={category.name} lead={category.blurb} accent={category.accent}>
     <p class="text-muted mt-6 font-mono text-sm">{counts}</p>
   </PageHead>

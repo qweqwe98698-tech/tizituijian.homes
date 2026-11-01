@@ -53,14 +53,22 @@ const description = fmt(t.contactDescription, { name: site.author });
             </li>
             {nav.social.map(({ label, href }) => (
               <li>
-                <LeaderRow href={href} title={label} right={new URL(href).host} />
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="me nofollow noopener"
+                  class="row ruled"
+                  style="--row-accent: var(--accent-1)"
+                >
+                  <span class="line">
+                    <span class="title">{label}</span>
+                    <span class="rule" aria-hidden="true"></span>
+                    <span class="right">{new URL(href).host}</span>
+                  </span>
+                </a>
               </li>
             ))}
           </ul>
-          <p class="text-muted mt-10 max-w-content font-mono text-sm">
-            Theme note: set <code>contact.endpoint</code> in <code>src/config.ts</code> to a
-            Formspree or Basin URL and this page renders a form instead.
-          </p>
         </>
       )}
     </div>

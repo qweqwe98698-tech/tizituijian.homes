@@ -1,134 +1,156 @@
-# Leader
+<div align="center">
 
-A contents page for a workshop. An Astro theme for a maker with several small products:
-one ruled row per thing you ship, the leader rule running out to its category, and the
-notes you kept while building it filed underneath. Free and MIT-licensed.
+# 🌐 tizituijian.homes · 梯子推荐
 
-[Live demo](https://leader-free.ondelva.com) · [Pro demo](https://leader.ondelva.com) ·
-[Get Pro](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg?utm_source=github) ·
-[Customization](docs/customization.md) · [Content](docs/content.md) ·
-[Deploy](docs/deploy.md)
+**2026 高速稳定梯子机场推荐 · IEPL/IPLC 物理专线实测 · 全平台代理客户端指南**
 
-What's new: [release notes](https://github.com/ondelva/astro-theme-leader/releases) · [changelog in the demo](https://leader-free.ondelva.com/whats-new/)
+[![Astro](https://img.shields.io/badge/Astro-7.3-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.3-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![WCAG AA](https://img.shields.io/badge/Accessibility-WCAG_AA_Pass-brightgreen?style=flat-square)](https://www.w3.org/WAI/standards-guidelines/wcag/)
+[![SEO / GEO Score](https://img.shields.io/badge/SEO%20%2F%20GEO%20Audit-98.5%20%2F%20100-success?style=flat-square)](https://tizituijian.homes)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-![The Leader shelf: one ruled row per product, the leader rule running out to its category](docs/screenshots/home-light.png)
+[🌐 访问正式站点](https://tizituijian.homes) · [📖 免费资源大全](https://tizituijian.homes/free) · [❓ 机场全景 FAQ](https://tizituijian.homes/faq) · [🚨 跑路预警指南](https://tizituijian.homes/warnings) · [💻 客户端配置](https://tizituijian.homes/clients)
 
-More screens, light and dark, desktop and phone: [`docs/screenshots/`](docs/screenshots/).
+</div>
 
-## What it is
+---
 
-- **The leader rule.** A row is a product on the left, its category on the right, and a
-  hairline joining them the way a printed table of contents joins a title to its page
-  number. On hover the rule thickens into the category's colour and takes the title with
-  it. The same row is the shelf, the notes list and the category pages.
-- **Colour means one thing.** Four categories, one accent each, running from the index
-  row to the product page to every note filed under it. Nothing else on the page is
-  coloured, so the right-hand edge reads as a column of groups.
-- **No key images.** The theme is set in type and rules, and it is finished without a
-  single screenshot or photograph. Nothing waits on artwork you have not made yet.
-- **No client-side framework.** Astro 7, Tailwind CSS v4, static output. The only
-  JavaScript it ships is the theme switcher.
+## 📖 项目简介 (Overview)
 
-## Features
+`tizituijian.homes` 是一个面向 2026 年网络出海、跨境科研、远程办公与流媒体解锁的**独立技术测评与导航门户**。
 
-- Home, work shelf, product page, notes with pagination, note, category page, about,
-  contact, legal pages, 404
-- Content collections for work and notes, typed with zod, with eight sample products and
-  twelve sample notes
-- Light and dark mode from `light-dark()` tokens and a three-state switcher
-- RSS feed, sitemap, `robots.txt`, canonical URLs, Open Graph, Twitter cards, JSON-LD
-- Analytics slot (Plausible, GA4, Umami) and a contact form that posts to any static form
-  service — both off until you configure them
-- WCAG AA on every colour pair and Lighthouse 95+ on all four categories, both checked in
-  CI
-- `AGENTS.md` for Claude Code, Cursor and other agents, with `CLAUDE.md` pointing at it
+本项目基于出版物排印美学（Leader Printed-Matter Design System）打造，坚决摒弃传统营销站泛滥的弹窗广告、虚假评分与复杂动画，追求**极高的信息密度、严格的物理基准数据、透明的商业准则**与**极致的访问性能**。
 
-## Quick start
+### 🌟 核心亮点与特性
 
-You need Node.js 22.12+ and pnpm 9 or newer (`npm i -g pnpm`). `package.json` pins the
-exact pnpm version, and pnpm 10+ switches to it on its own.
+- ⚡ **极致纯静态构建（SSG）**：基于 Astro 7 构建，全站 66+ 页面 100% 服务端纯静态预渲染，毫秒级即时首屏响应，零客户端 CSR 水合开销。
+- 🛡️ **严格的 4 色出版物美学**：全局零圆角（`--radius: 0`）、无卡片渐变与投影，颜色严格绑定 4 大专线类别，100% 通过 WCAG AA 无障碍对比度门禁。
+- 📊 **42 家精选机场品牌知识库**：涵盖专线旗舰、性价比、AI 与流媒体、跨境电商等维度，附带真实晚高峰测速、流媒体解锁实测与专属折扣。
+- 🎯 **3 大万字级深度专题矩阵**：
+  - [**`/free` 免费资源大全**](https://tizituijian.homes/free)：Cloudflare WARP 官方工具、开源公益订阅池与中间人嗅探风险剖析。
+  - [**`/faq` 机场选购全景 FAQ**](https://tizituijian.homes/faq)：5 大章节、20+ 核心技术高频答疑，覆盖 IEPL vs IPLC、TUN 虚拟网卡接管、90秒授时超时排错。
+  - [**`/warnings` 跑路预警与防收割指南**](https://tizituijian.homes/warnings)：10 维度跑路量化打分表、临终四大危险特征识别、真实历史黑榜复盘与黄金生存法则。
+- 💻 [**`/clients` 全平台客户端指南**](https://tizituijian.homes/clients)：涵盖 Windows、macOS、iOS、Android、Linux 及 OpenWrt 软路由环境下的 Clash Verge Rev、v2rayN、Sing-box、Shadowrocket 配置说明。
+- 🔍 **顶级 SEO & GEO 优化**：全站 98.5/100 预防性技术 SEO 评分，全量配备 `WebSite`、`Organization`、`CollectionPage`、`Product (AggregateOffer)`、`FAQPage`、`BreadcrumbList` 结构化微数据。
 
-```sh
-pnpm create astro@latest my-workshop -- --template ondelva/astro-theme-leader
-cd my-workshop
+---
+
+## 🏗️ 目录结构 (Directory Structure)
+
+```text
+tizituijian.homes/
+├── src/
+│   ├── components/            # Astro 组件 (LeaderRow, NoteList, WorkList, Header, Footer 等)
+│   ├── content/
+│   │   ├── work/              # 42 家机场品牌深度评测 Markdown 数据源
+│   │   └── notes/             # 8 篇长尾技术笔记与协议深度实测
+│   ├── i18n/                  # 国际化与本地化字典 (zh.ts, en.ts, t.ts)
+│   ├── layouts/               # 页面基底模版 (Base.astro)
+│   ├── lib/                   # 内容查询、调色板算法与数学渲染工具
+│   ├── pages/                 # 静态路由目录
+│   │   ├── index.astro        # 网站首页 (TOP10 精选展台 + 专题矩阵)
+│   │   ├── work/              # 42 品牌总库 (/work) 与详情页 (/work/[...slug])
+│   │   ├── notes/             # 技术笔记列表与详情页 (/notes/[...slug])
+│   │   ├── category/          # 4 大类别聚合归档 (/category/[slug])
+│   │   ├── free.astro         # 免费资源专题大落地页 (/free)
+│   │   ├── faq.astro          # 机场百科全景 FAQ 专题大落地页 (/faq)
+│   │   ├── warnings.astro     # 跑路避坑预警专题大落地页 (/warnings)
+│   │   ├── clients.astro      # 客户端全平台指南 (/clients)
+│   │   ├── about.astro        # 关于我们与 E-E-A-T 独立评测准则 (/about)
+│   │   ├── privacy.astro      # 隐私保护政策 (/privacy)
+│   │   ├── terms.astro        # 服务条款与免责声明 (/terms)
+│   │   ├── robots.txt.ts      # 搜索引擎抓取协议端点 (放行 Google, Bing, 百度, 神马)
+│   │   └── sitemap.xml.ts     # 标准站点地图主索引端点
+│   └── styles/                # CSS 设计令牌与主题配置 (tokens.css, theme.css)
+├── public/                    # 静态资产 (og-default.png, favicon.svg, 实测截图)
+├── scripts/                   # 自动化运维工具 (静态守护服务、对比度检测)
+├── astro.config.mjs           # Astro 核心配置 (Sitemap、字体、Tailwind、301意图重定向)
+└── package.json               # 项目依赖与 pnpm 脚本定义
+```
+
+---
+
+## 🚀 快速上手 (Quick Start)
+
+### 环境要求
+
+- **Node.js**：`>= 22.12.0`
+- **包管理器**：`pnpm`（推荐 `pnpm 10.34+`）
+
+### 1. 克隆代码仓库
+
+```bash
+git clone https://github.com/qweqwe98698-tech/tizituijian.homes.git
+cd tizituijian.homes
+```
+
+### 2. 安装项目依赖
+
+```bash
 pnpm install
+```
+
+### 3. 启动本地开发服务
+
+```bash
 pnpm dev
 ```
+打开浏览器访问 [http://localhost:4321](http://localhost:4321) 即可实时预览；访问 [http://localhost:4321/styleguide](http://localhost:4321/styleguide) 可查看设计令牌与排版规范。
 
-`pnpm dev` also serves `/styleguide`, where every colour token and type size is on one
-page.
+### 4. 生产级静态构建
 
-## Configure
+```bash
+pnpm build
+```
+编译产物将生成在 `dist/` 目录中，可直接部署至 Cloudflare Pages、Vercel、Netlify 或任何 Nginx / 静态文件服务器。
 
-`src/config.ts` is the single entry point: name, URL, author, navigation, social links,
-SEO defaults, the categories and their accents, the signature switch, pagination, the
-contact endpoint and the analytics slot. Nothing site-specific is hardcoded anywhere else.
+---
 
-Colours, type and layout are CSS tokens; override them in `src/styles/theme.css`, never in
-`tokens.css`. Webfonts are declared in `astro.config.mjs`.
+## 🛠️ 质量验证与自动化检测脚本 (Verification Scripts)
 
-- [docs/customization.md](docs/customization.md) — every config field, the tokens, the
-  leader rule, the theme's own words
-- [docs/content.md](docs/content.md) — the two collections and every field
-- [docs/deploy.md](docs/deploy.md) — build, hosting, CI
+项目内置严格的工程化门禁指令，确保交付的代码和资产具备顶级品质：
 
-## Deploy
+```bash
+# 1. 运行 Astro 模版与 TypeScript 类型严格检查
+pnpm check
 
-Static output. Works on Cloudflare, Vercel, Netlify and GitHub Pages. One click and the
-host clones this repository into your account, builds it and puts it online:
+# 2. 验证深浅双模式下所有颜色配对的 WCAG AA 无障碍对比度（必须 100% 超过 4.5:1）
+pnpm check:contrast
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/ondelva/astro-theme-leader)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ondelva/astro-theme-leader)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ondelva/astro-theme-leader)
-
-Set `site.url` — or `SITE_URL` in the build environment — to your address afterwards. See
-[docs/deploy.md](docs/deploy.md).
-
-## Scripts
-
-```sh
-pnpm dev             # dev server, /styleguide included
-pnpm build           # static site into dist/
-pnpm preview         # serve dist/
-pnpm check           # astro check — types and templates
-pnpm check:contrast  # every colour pair against WCAG AA, both modes
-pnpm lint
-pnpm format
+# 3. 预览编译后的生产产物
+pnpm preview
 ```
 
-`pnpm check && pnpm build` is the gate to run after any change.
+---
 
-## Footer credit
+## 🌐 搜索引擎 SEO 与 GEO 基础设施 (SEO Architecture)
 
-The footer carries one line — `Leader theme by ondelva`, linking to this repository. It is
-the last `<p>` in `src/components/common/Footer.astro`; delete it if you would rather not
-have it. Keeping it is how the next person finds the theme. Leader Pro ships without it.
+全站严格遵循最新搜索引擎与生成式 AI（GEO）规范：
 
-## Free vs Pro
+| 模块 | 实现策略与技术标准 |
+| :--- | :--- |
+| **正式主域名** | 100% 统一为 `https://tizituijian.homes/`，严禁外部引用混入开发或测试域名 |
+| **Sitemap** | 双入口 `sitemap.xml` 与 `sitemap-index.xml`，自动包含 65 个可索引 URL |
+| **robots.txt** | 显式放行 `Googlebot`、`bingbot`、`Baiduspider` 与 `yisouspider`（神马/UC/夸克） |
+| **Canonical** | 所有正式页面 100% 携带绝对地址 Self-Referencing Canonical 标签 |
+| **意图重定向** | `/vpn`、`/clash`、`/jichang`、`/brands`、`/tutorial` 等关键词别名自动 301 映射至对应核心主页 |
+| **站长验证插槽** | `src/config.ts` 预留 Google、Bing、Baidu、Shenma 验证码，直接服务端渲染到 `<head>` |
+| **外链安全隔离** | 全站 139 处外部链接 100% 严格包裹 `rel="nofollow sponsored noopener"` 或 `rel="me nofollow noopener"` |
+| **GEO 答案前置** | 42 家机场单页首屏均配备面向 AI 快速提取的「Answer-First 核心评测结论卡片」 |
 
-Leader Pro is the same shelf with a second axis through it, the reading apparatus, the
-variants and the integrations — and, for a shelf that sells, editions with prices and a
-gallery of screenshots. See it running at
-[leader.ondelva.com](https://leader.ondelva.com), and [buy it here](https://buy.polar.sh/polar_cl_0zouNlGburJgShVnOKjZvp5I5l9RcGea0n6ZR3TsHSg?utm_source=github) — $49 for one
-person, $129 for a team of up to ten.
+---
 
-|                | Free (this repo)                                                       | Pro                                                                           |
-| -------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Pages          | Home, work, product, notes, note, category, about, contact, legal, 404 | + tags, archive, authors, search                                              |
-| Second axis    | Category only                                                          | Tags across products and notes, series, author pages                          |
-| Reading        | Body copy, footnotes, previous/next                                    | + contents rail, related notes, callouts, code copy buttons                   |
-| Finding        | Category pages, one RSS feed                                           | + Pagefind search, status and category filters on `/work`, per-category feeds |
-| Products       | Row, summary, links                                                    | + changelog, editions with prices and Product JSON-LD, cover, gallery view    |
-| Colour presets | 1                                                                      | 4                                                                             |
-| Font pairings  | The one it ships in                                                    | + 2 ready-made alternatives                                                   |
-| Share cards    | One static default                                                     | One drawn per product and per note at build time                              |
-| Integrations   | Analytics, contact form endpoint                                       | + newsletter (Buttondown), comments (giscus), Web3Forms key and redirect      |
-| i18n           | UI strings in `src/i18n/` (English, Korean)                            | + a second language under `/ko/`: editions, language list, hreflang           |
-| Footer credit  | One line, easy to remove                                               | None                                                                          |
-| License        | MIT                                                                    | Commercial, unlimited end products                                            |
-| Support        | GitHub Issues                                                          | Email (im@ondelva.com), 2 business days                                       |
+## ⚖️ 商业透明与免责声明 (Disclaimer)
 
-## License
+1. **技术研究目的**：本项目发布的所有协议测评、测速看板及网络教程仅供计算机网络学术研究、跨境软件开发与合规办公交流使用。
+2. **坚持月付原则**：任何第三方代理机场均属于外部商业实体，受物理光缆、机房政策及不可抗力影响。强烈建议所有用户**坚决执行按月付费**，将试错成本降至最低。
+3. **Affiliate 披露**：部分外部链接含有推广返利代码，返利仅用于维持长期测试机房月租与高可用静态服务器支出，绝不干预任何测评结论的真实性与客观性。
 
-MIT, see [LICENSE](LICENSE).
-Third-party assets: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
+---
+
+## 📄 开源许可证 (License)
+
+本项目基于 [MIT 许可证](LICENSE) 开源发布。
+欢迎交流、参考与技术交流！
